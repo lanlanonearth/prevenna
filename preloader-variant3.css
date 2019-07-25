@@ -1,0 +1,189 @@
+:root {
+  --prevenna-purple: #3d5588;
+  --prevenna-yellow: #ffae3b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.preloader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: absolute;
+
+  box-shadow: 0px -4px 32px -15px rgba(0,0,0,0.75);
+
+  animation-name: preloader-out;
+  animation-duration: 5s;
+  animation-delay: 6.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: both;
+  animation-timing-function: both;
+  animation-fill-mode: both;
+}
+
+.demo-container {
+  width: 30vmin;
+  height: 30vmin;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.section-container {
+  background: url(img/site-capture.png) 0 0 no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#prevenna-complete-forflash, #prevenna-complete-forpulse,
+#prevenna-split-line1, #prevenna-split-line2,
+#prevenna-divided-line1, #prevenna-divided-line2,
+#prevenna-divided-curve1, #prevenna-divided-curve2 {
+  opacity: 0;
+}
+
+/* step 1: trace */
+#prevenna-outline-trace {
+  fill: none;
+  stroke: var(--prevenna-purple);
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  animation-name: prevenna-line-trace;
+  stroke-dasharray: 1500px;
+  stroke-dashoffset: 1500px;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: both;
+  animation-fill-mode: backwards;
+}
+
+/* step 2: fill */
+#prevenna-complete-forflash {
+  fill: none;
+  stroke: var(--prevenna-purple);
+  stroke-width: 4.5px;
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  animation-name: prevenna-line-flash;
+  animation-duration: 6s;
+  animation-delay: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: both;
+  animation-fill-mode: forwards;
+}
+
+#prevenna-complete-forpulse {
+  fill: none;
+  stroke: url(#prevenna-line-gradient);
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  animation-name: prevenna-pulse;
+  animation-duration: 1s;
+  animation-delay: 9s;
+  animation-iteration-count: 1;
+  animation-timing-function: both;
+  animation-fill-mode: forwards;
+}
+
+/* step 3: pulse */
+
+
+@keyframes prevenna-line-trace {
+  to {
+    stroke-dashoffset: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes prevenna-line-flash {
+  0% {
+    stroke-dasharray: 0% 0% 50% 0%;
+  }
+  10% {
+    stroke-dasharray: 25% 75% 34% 124%;
+    opacity: 1;
+  }
+  30% {
+    stroke-dasharray: 50% 0%;
+  }
+  35% {
+    stroke-dasharray: 20% 350 100% 30%;
+  }
+  55% {
+    stroke-dasharray: 50% 0%;
+  }
+  75% {
+    stroke-dasharray: 20% 350 100% 30%;
+  }
+  85% {
+    stroke-dasharray: 50% 200% 34% 124%;
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 0% 0% 50% 0%;
+  }
+}
+
+@keyframes prevenna-pulse {
+  0% {
+    stroke-width: 4.5px;
+    opacity: 1;
+  }
+  39% {
+    stroke-width: 4.5px;
+  }
+  41% { /* final pulse */
+    stroke-width: 15px;
+  }
+  43% {
+    stroke-width: 4.49px;
+  }
+  100% {
+    stroke-width: 4.49px;
+    opacity: 1;
+  }
+}
+
+@keyframes preloader-out {
+  0% {
+    background-color: var(--prevenna-yellow);
+    transform: translateYx(0vh);
+  }
+  49% {
+    background-color: var(--prevenna-yellow);
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  80% {
+    transform: translateX(0);
+  }
+  99% {
+    opacity: 1;
+  }
+  100% {
+    background-color: #ffffff;
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
